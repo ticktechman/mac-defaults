@@ -142,19 +142,19 @@ function dock.addapp() {
 
 ## configure dock
 function dock.set() {
-  ## 图标大小
+  ## change icon size
   defaults write com.apple.dock "tilesize" -int 42
 
-  ## 开启自动隐藏
+  ## auto hide dock
   defaults write com.apple.dock "autohide" -bool true
 
-  ## 关闭显示最近APP
+  ## don't show recent apps in dock
   defaults write com.apple.dock "show-recents" -bool false
 
-  ## 设置动画效果为缩放
+  ## change animation effect to scale
   defaults write com.apple.dock "mineffect" -string "scale"
 
-  ## 显示所有图标
+  ## show all app icons
   defaults write com.apple.dock "static-only" -bool false
 
   killall Dock
@@ -184,48 +184,44 @@ function dock.kill() {
 function finder.set() {
   defaults write -g AppleShowAllExtensions -bool true
 
-  ##边栏图标大小
+  ## change sidebar icon size
   defaults write -g NSTableViewDefaultSizeMode -int 3
 
-  ## 默认finder启动位置
+  ## default open $HOME
   defaults write com.apple.finder NewWindowTarget -string "PfHm"
 
-  ## 设置默认使用list view
+  ## use list view by default
   defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
-  ## 文件夹图标放在最前面
+  ## show folder first in finder window
   defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
-  ## 默认从当前文件夹进行搜索
+  ## search the current folder by default
   defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
-  ## 关闭修改文件扩展名警告
+  ## disable warning when change file extension
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-  ## 底部显示路径栏
+  ## show path bar below
   defaults write com.apple.finder ShowPathbar -bool true
 
-  ## 关闭清空废纸篓警告
+  ## disable warning when empty trash
   defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
-  ## 关闭边栏实现最近标签
+  ## don't show recent tags in sidebar
   defaults write com.apple.finder ShowRecentTags -bool false
 
-  ## 设置list view的图标&文字大小
+  ## change list view font & icon size
   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettingsV2:textSize 14" ~/Library/Preferences/com.apple.finder.plist
   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettingsV2:iconSize 32" ~/Library/Preferences/com.apple.finder.plist
   defaults import com.apple.finder ~/Library/Preferences/com.apple.finder.plist
 
-  ## 重启生效
+  ## restart to take effect
   killall Finder
 }
 
 function finder.reset() {
   defaults delete com.apple.finder
-  killall Finder
-}
-
-function finder.kill() {
   killall Finder
 }
 
