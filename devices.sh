@@ -12,22 +12,24 @@ function defaults.activate() {
   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 }
 function mouse.set() {
-  defaults write .GlobalPreferences com.apple.mouse.scaling -float 1.2
+  defaults write -g com.apple.mouse.scaling -float 1.2
+  defaults write -g com.apple.swipescrolldirection -bool false
   defaults.activate
 }
 function mouse.reset() {
-  defaults delete .GlobalPreferences com.apple.mouse.scaling
+  defaults delete -g com.apple.mouse.scaling
+  defaults delete -g com.apple.swipescrolldirection
   defaults.activate
 }
 
 function keyboard.set() {
-  defaults write .GlobalPreferences KeyRepeat -int 2
-  defaults write .GlobalPreferences InitialKeyRepeat -int 25
+  defaults write -g KeyRepeat -int 2
+  defaults write -g InitialKeyRepeat -int 25
   defaults.activate
 }
 function keyboard.reset() {
-  defaults delete .GlobalPreferences KeyRepeat
-  defaults delete .GlobalPreferences InitialKeyRepeat
+  defaults delete -g KeyRepeat
+  defaults delete -g InitialKeyRepeat
   defaults.activate
 }
 

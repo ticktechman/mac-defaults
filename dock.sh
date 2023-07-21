@@ -63,6 +63,7 @@ function dock.clear() {
 ## reset dock configurations
 function dock.reset() {
   defaults delete com.apple.dock
+  killall Dock
 }
 
 ## restart dock
