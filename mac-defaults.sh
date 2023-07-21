@@ -235,4 +235,12 @@ function plist.cat() {
     /usr/libexec/PlistBuddy -c 'print ":"' "$one"
   done
 }
+
+function plist.read() {
+  [[ $# -ne 2 ]] && {
+    echo "Usage: plist.read <xxx.plist> <key>"
+    return 1
+  }
+  /usr/libexec/PlistBuddy -c "print \":${2}\"" "$1"
+}
 ###############################################################################
