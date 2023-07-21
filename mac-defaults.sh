@@ -214,7 +214,7 @@ function finder.set() {
   ## change list view font & icon size
   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettingsV2:textSize 14" ~/Library/Preferences/com.apple.finder.plist
   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettingsV2:iconSize 32" ~/Library/Preferences/com.apple.finder.plist
-  defaults import com.apple.finder ~/Library/Preferences/com.apple.finder.plist
+  defaults read com.apple.finder >/dev/null
 
   ## restart to take effect
   killall Finder
