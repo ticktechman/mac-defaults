@@ -243,4 +243,13 @@ function plist.read() {
   }
   /usr/libexec/PlistBuddy -c "print \":${2}\"" "$1"
 }
+
+function plist.write() {
+  [[ $# -ne 3 ]] && {
+    echo "Usage: plist.write <xxx.plist> <key> <value>"
+    return 1
+  }
+  /usr/libexec/PlistBuddy -c "set \":${2}\" \"${3}\"" "$1"
+}
+
 ###############################################################################
