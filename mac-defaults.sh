@@ -225,4 +225,14 @@ function finder.reset() {
   killall Finder
 }
 
+function plist.cat() {
+  [[ $# -lt 1 ]] && {
+    echo "Usage: plist.cat <xxx.plist> ..."
+    return 1
+  }
+
+  for one in "$@"; do
+    /usr/libexec/PlistBuddy -c 'print ":"' "$one"
+  done
+}
 ###############################################################################
