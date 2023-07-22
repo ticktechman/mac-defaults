@@ -75,36 +75,36 @@ function defaults.privates.import() {
 function defaults.activate() {
   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 }
-function mouse.set() {
+function defaults.mouse.set() {
   defaults write -g com.apple.mouse.scaling -float 1.2
   defaults write -g com.apple.swipescrolldirection -bool false
   defaults.activate
 }
-function mouse.reset() {
+function defaults.mouse.reset() {
   defaults delete -g com.apple.mouse.scaling
   defaults delete -g com.apple.swipescrolldirection
   defaults.activate
 }
 
-function keyboard.set() {
+function defaults.keyboard.set() {
   defaults write -g KeyRepeat -int 2
   defaults write -g InitialKeyRepeat -int 25
   defaults.activate
 }
-function keyboard.reset() {
+function defaults.keyboard.reset() {
   defaults delete -g KeyRepeat
   defaults delete -g InitialKeyRepeat
   defaults.activate
 }
 
-function trackpad.set() {
+function defaults.trackpad.set() {
   defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 1
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
   defaults.activate
 }
-function trackpad.reset() {
+function defaults.trackpad.reset() {
   defaults delete com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag
   defaults delete com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag
   defaults delete com.apple.AppleMultitouchTrackpad Clicking
@@ -116,7 +116,7 @@ function trackpad.reset() {
 ## dock releated
 #######################################
 ## add an app to dock
-function dock.addapp() {
+function defaults.dock.addapp() {
   app="${1}"
 
   if open -Ra "${app}"; then
@@ -141,7 +141,7 @@ function dock.addapp() {
 }
 
 ## configure dock
-function dock.set() {
+function defaults.dock.set() {
   ## change icon size
   defaults write com.apple.dock "tilesize" -int 42
 
@@ -157,31 +157,25 @@ function dock.set() {
   ## show all app icons
   defaults write com.apple.dock "static-only" -bool false
 
-  killall Dock
-}
-
-## clear all apps in dock
-function dock.clear() {
+  ## clear all dock items
   defaults delete com.apple.dock persistent-apps
   defaults delete com.apple.dock persistent-others
-  killall Dock
 }
 
 ## reset dock configurations
-function dock.reset() {
+function defaults.dock.reset() {
   defaults delete com.apple.dock
-  killall Dock
 }
 
 ## restart dock
-function dock.kill() {
+function defaults.dock.activate() {
   killall Dock
 }
 
 #######################################
 ## finder releated
 #######################################
-function finder.set() {
+function defaults.finder.set() {
   defaults write -g AppleShowAllExtensions -bool true
 
   ## change sidebar icon size
@@ -215,16 +209,18 @@ function finder.set() {
   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettingsV2:textSize 14" ~/Library/Preferences/com.apple.finder.plist
   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettingsV2:iconSize 32" ~/Library/Preferences/com.apple.finder.plist
   defaults read com.apple.finder >/dev/null
-
-  ## restart to take effect
-  killall Finder
 }
 
-function finder.reset() {
+function defaults.finder.reset() {
   defaults delete com.apple.finder
+}
+function defaults.finder.activate() {
   killall Finder
 }
 
+#######################################
+## plist utils
+#######################################
 function plist.cat() {
   [[ $# -lt 1 ]] && {
     echo "Usage: plist.cat <xxx.plist> ..."
