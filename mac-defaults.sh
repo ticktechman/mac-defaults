@@ -75,6 +75,10 @@ function defaults.privates.import() {
 function defaults.activate() {
   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 }
+
+#######################################
+## mouse releated
+#######################################
 function defaults.mouse.set() {
   defaults write -g com.apple.mouse.scaling -float 1.2
   defaults write -g com.apple.swipescrolldirection -bool false
@@ -86,6 +90,9 @@ function defaults.mouse.reset() {
   defaults.activate
 }
 
+#######################################
+## keyboard releated
+#######################################
 function defaults.keyboard.set() {
   defaults write -g KeyRepeat -int 2
   defaults write -g InitialKeyRepeat -int 25
@@ -97,6 +104,9 @@ function defaults.keyboard.reset() {
   defaults.activate
 }
 
+#######################################
+## trackpad releated
+#######################################
 function defaults.trackpad.set() {
   defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -int 1
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -int 1
@@ -160,15 +170,13 @@ function defaults.dock.set() {
   ## clear all dock items
   defaults delete com.apple.dock persistent-apps
   defaults delete com.apple.dock persistent-others
+
+  killall Dock
 }
 
 ## reset dock configurations
 function defaults.dock.reset() {
   defaults delete com.apple.dock
-}
-
-## restart dock
-function defaults.dock.activate() {
   killall Dock
 }
 
@@ -209,13 +217,31 @@ function defaults.finder.set() {
   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettingsV2:textSize 14" ~/Library/Preferences/com.apple.finder.plist
   /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:ExtendedListViewSettingsV2:iconSize 32" ~/Library/Preferences/com.apple.finder.plist
   defaults read com.apple.finder >/dev/null
+
+  killall Finder
 }
 
 function defaults.finder.reset() {
   defaults delete com.apple.finder
-}
-function defaults.finder.activate() {
   killall Finder
+}
+
+#######################################
+## defaults utils
+#######################################
+function defaults.set() {
+  defaults.mouse.set
+  defaults.keyboard.set
+  defaults.trackpad.set
+  defaults.dock.set
+  defaults.finder.set
+}
+function defaults.reset() {
+  defaults.mouse.reset
+  defaults.keyboard.reset
+  defaults.trackpad.reset
+  defaults.dock.reset
+  defaults.finder.reset
 }
 
 #######################################
