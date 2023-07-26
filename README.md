@@ -40,7 +40,7 @@ plist.write xxx.plist key value
   - Auto-hide
   - Do NOT show recents apps
   - Change minimazation effect to scale
-- `defaults.finer.set`:
+- `defaults.finder.set`:
   - Use list view as default
   - Change list view icon size to 32x32, font-size to 14px
   - Show folder first.
