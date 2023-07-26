@@ -1,6 +1,6 @@
 # What is Mac-defaults
 
-This is a bundle of bash functions that change macOS default configurations. It is very personal profile. If it is not meet your requirements, change the code directly.
+This is a bundle of bash functions that change macOS default configurations. It is very personal profile. If it does NOT meet your requirements, fork the repo and change the code.
 
 # HOW TO
 
