@@ -32,7 +32,7 @@ plist.read xxx.plist key
 plist.write xxx.plist key value
 ```
 
-# spec
+# SPEC
 
 - `defaults.dock.set`: 
   - Clear all icons in dock (except finder, trash)
