@@ -265,14 +265,6 @@ function plist.read() {
   }
   /usr/libexec/PlistBuddy -c "print \":${2}\"" "$1"
 }
-function plist.array.empty() {
-  [[ $# -ne 2 ]] && {
-    echo "Usage: plist.array.empty <xxx.plist> <key>"
-    return 1
-  }
-  /usr/libexec/PlistBuddy -c "delete \":${2}\" " "$1"
-  /usr/libexec/PlistBuddy -c "add \":${2}\" array " "$1"
-}
 
 function plist.write() {
   [[ $# -ne 3 ]] && {
@@ -282,4 +274,21 @@ function plist.write() {
   /usr/libexec/PlistBuddy -c "set \":${2}\" \"${3}\"" "$1"
 }
 
+function plist.array.empty() {
+  [[ $# -ne 2 ]] && {
+    echo "Usage: plist.array.empty <xxx.plist> <key>"
+    return 1
+  }
+  /usr/libexec/PlistBuddy -c "delete \":${2}\" " "$1"
+  /usr/libexec/PlistBuddy -c "add \":${2}\" array " "$1"
+}
+
+function plist.dict.empty() {
+  [[ $# -ne 2 ]] && {
+    echo "Usage: plist.dict.empty <xxx.plist> <key>"
+    return 1
+  }
+  /usr/libexec/PlistBuddy -c "delete \":${2}\" " "$1"
+  /usr/libexec/PlistBuddy -c "add \":${2}\" dict " "$1"
+}
 ###############################################################################
