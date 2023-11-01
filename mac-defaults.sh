@@ -272,6 +272,7 @@ function plist.write() {
     return 1
   }
   /usr/libexec/PlistBuddy -c "set \":${2}\" \"${3}\"" "$1"
+  plutil -convert binary1 "$1"
 }
 
 function plist.array.empty() {
@@ -281,6 +282,7 @@ function plist.array.empty() {
   }
   /usr/libexec/PlistBuddy -c "delete \":${2}\" " "$1"
   /usr/libexec/PlistBuddy -c "add \":${2}\" array " "$1"
+  plutil -convert binary1 "$1"
 }
 
 function plist.dict.empty() {
@@ -290,5 +292,6 @@ function plist.dict.empty() {
   }
   /usr/libexec/PlistBuddy -c "delete \":${2}\" " "$1"
   /usr/libexec/PlistBuddy -c "add \":${2}\" dict " "$1"
+  plutil -convert binary1 "$1"
 }
 ###############################################################################
